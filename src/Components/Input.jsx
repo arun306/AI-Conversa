@@ -7,8 +7,8 @@ import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase
 import { db, storage } from '../firebase';
 import { v4 as uuid} from 'uuid';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import axios from 'axios';
-import { LoadingContext } from '../context/LoadingContext';
+// import axios from 'axios';
+// import { LoadingContext } from '../context/LoadingContext';
 
 
 const Input = () => {
@@ -21,7 +21,7 @@ const Input = () => {
   const {currentUser} = useContext(AuthContext); //current user
   const {data} = useContext(ChatContext) //other user
 
-  const {setIsWaitingForResponse} = useContext(LoadingContext)
+  // const {setIsWaitingForResponse} = useContext(LoadingContext)
 
   
 
@@ -85,28 +85,55 @@ const Input = () => {
           })
           
 
-          // getting response from chatGPT api
+          
+          try{
 
-          const HTTP = "http://localhost:8081/chat";
-          axios.post(`${HTTP}` , {text})
-          .then(async (res)=>{
-            // alert(res.data);
-            // console.log(res.data)
-            await updateDoc(doc(db,"AIchats",data.chatId),{
-              messages: arrayUnion({
-                id : uuid(),
-                text : res.data,
-                senderId : currentUser.uid,
-                date : Timestamp.now(),
-                isChatGPTResponse : true
-              })
+            const {Configuration,OpenAIApi} = require('openai');
+            const Config = new Configuration({
+              apiKey : process.env.REACT_APP_API_KEY
+          })
+
+          const openai = new OpenAIApi(Config);
+          
+          const completion = await openai.createChatCompletion({
+            model: "gpt-3.5-turbo",
+            messages : [{role: "user", content : text} ]
+          })
+          
+          await updateDoc(doc(db,"AIchats",data.chatId),{
+            messages: arrayUnion({
+              id : uuid(),
+              text : completion.data.choices[0].message.content,
+              senderId : currentUser.uid,
+              date : Timestamp.now(),
+              isChatGPTResponse : true
             })
-            
           })
-          .catch((err)=>{
-            // setIsWaitingForResponse(false);
-            console.log(err)
-          })
+        }catch(e){
+          console.log(e.message);
+        }
+          
+          
+          // getting response from chatGPT api
+          // const HTTP = "http://localhost:8081/chat";
+          // axios.post(`${HTTP}` , {text})
+          // .then(async (res)=>{
+          //   // alert(res.data);
+          //   // console.log(res.data)
+          //   await updateDoc(doc(db,"AIchats",data.chatId),{
+          //     messages: arrayUnion({
+          //       id : uuid(),
+          //       text : res.data,
+          //       senderId : currentUser.uid,
+          //       date : Timestamp.now(),
+          //       isChatGPTResponse : true
+          //     })
+          //   })
+          // })
+          // .catch((err)=>{
+          //   // setIsWaitingForResponse(false);
+          //   console.log(err)
+          // })
           
           // setIsWaitingForResponse(false);
 
