@@ -91,7 +91,7 @@ const Input = () => {
           axios.post(`${HTTP}` , {text})
           .then(async (res)=>{
             // alert(res.data);
-            console.log(res.data)
+            // console.log(res.data)
             await updateDoc(doc(db,"AIchats",data.chatId),{
               messages: arrayUnion({
                 id : uuid(),
