@@ -21,6 +21,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // endpoint for ChatGPT
+// app.post("/chat", async (req, res) => {
+//   const { text } 
+// })
 
 app.post("/chat", async (req, res) => {
   // console.log(req)
