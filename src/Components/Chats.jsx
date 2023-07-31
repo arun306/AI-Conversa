@@ -70,7 +70,7 @@ const Chats = () => {
           >
             <img src="https://cdn.pixabay.com/photo/2022/01/11/21/48/link-6931554_640.png" alt="" />
             <div className="userChatInfo">
-              <span>kkmk</span>
+              <span>My AI </span>
               <p>last msg</p>
             </div>
           </div>

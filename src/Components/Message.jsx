@@ -20,7 +20,7 @@ const Message = ({msg}) => {
 
   // identifying any urls in the text msgs using regex pattern
   const parseTextWithUrls = (text) => {
-    console.log(isWaitingForResponse + "-----------asdfasdf-asdfas----------------");
+    // console.log(isWaitingForResponse + "-----------asdfasdf-asdfas----------------");
     const urlRegex = /(https?:\/\/[^\s]+)/g; //g
     
     return text.split(urlRegex).map((part, index) => {
