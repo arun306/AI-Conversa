@@ -28,13 +28,18 @@ body{
 $mainBg-color: #a7bcff;
 
 .formContainer{
-    background-color: $mainBg-color;
+    // background-color: $mainBg-color;
+    background-image: url("./img/chat-app-1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     .formWrapper{
-        background-color: white;
+        // background-color: white;
+        background-color: rgba(241, 233, 233,0.3);
+        // opacity: 0.8;
         padding: 20px 60px;
         border-radius: 10px;
         display: flex;
@@ -42,7 +47,7 @@ $mainBg-color: #a7bcff;
         align-items: center;
         gap: 10px;
         .logo{
-            color: #5d5b8d;
+            color: #ffffff;
             font-weight: bold;
             font-size: 24px;
         }
@@ -84,7 +89,7 @@ $mainBg-color: #a7bcff;
             }
         }
         p{
-            color: #5d5b8d;
+            color: #141415;
             font-size: 12px;
             margin-top: 10px;
         }

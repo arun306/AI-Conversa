@@ -39,7 +39,7 @@ const Login = () => {
         (
           <div className="formContainer">
               <div className="formWrapper">
-                  <span className="logo">Sabba Chat</span>
+                  <span className="logo">AI Conversa </span>
                   <span className="title">Login</span>
                   
                   <form onSubmit={handleSubmit} >
