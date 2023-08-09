@@ -26,6 +26,8 @@ const Input = () => {
   
 
   const handleSend = async () =>{
+    // console.log(process.env.MY_API)
+    // console.log(process.env.REACT_APP_API_KEY)
     if(img){
 
       const storageRef = ref(storage, uuid());
@@ -91,7 +93,7 @@ const Input = () => {
             const {Configuration,OpenAIApi} = require('openai');
             const Config = new Configuration({
               apiKey : process.env.REACT_APP_API_KEY
-          })
+            })
 
           const openai = new OpenAIApi(Config);
           
