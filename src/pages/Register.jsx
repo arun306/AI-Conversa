@@ -109,7 +109,7 @@ const Register = () => {
                 (
                     <div className="formContainer">
                         <div className="formWrapper">
-                            <span className="logo">Sabba Chat</span>
+                            <span className="logo">AI-Conversa</span>
                             <span className="title">Register</span>
 
                             <form onSubmit={handleSubmit}>
